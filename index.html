@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dealoround — Online Retail Store by Orbix Consultancy</title>
+  <meta name="description" content="Dealoround (dealoround.com) is an e-commerce retail platform owned and operated by Orbix Consultancy, Uttara, Dhaka, Bangladesh." />
+  <style>
+    :root {
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --bg: #f8fafc;
+      --card: #ffffff;
+      --text: #1e293b;
+      --muted: #64748b;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .top-bar {
+      background: var(--primary);
+      color: #cbd5e1;
+      font-size: 0.82rem;
+      text-align: center;
+      padding: 6px 16px;
+    }
+
+    .nav-container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    nav ul a:hover {
+      color: var(--accent);
+    }
+
+    .cart-btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      color: #fff;
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .hero-inner {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 2.45rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.08rem;
+      color: #cbd5e1;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 6px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+
+    section {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 1.9rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.07);
+    }
+
+    .product-thumb {
+      height: 170px;
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+    }
+
+    .card-body {
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 99px;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .card-body h3 {
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
+
+    .card-body p {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .price {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--primary);
+    }
+
+    .add-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .add-btn:hover {
+      background: var(--accent-hover);
+    }
+
+    .about-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .about-box h3 {
+      font-size: 1.35rem;
+      margin-bottom: 12px;
+      color: var(--primary);
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.95rem;
+    }
+
+    .info-list li strong {
+      color: var(--primary);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+    }
+
+    .contact-form {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.65);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #fff;
+      max-width: 680px;
+      width: 100%;
+      border-radius: 10px;
+      padding: 28px;
+      max-height: 82vh;
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    footer {
+      background: var(--primary);
+      color: #cbd5e1;
+      padding: 48px 24px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 32px;
+      margin-bottom: 32px;
+    }
+
+    .footer-inner h4 {
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 8px;
+      font-size: 0.92rem;
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .copyright {
+      max-width: 1180px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 20px;
+      text-align: center;
+      font-size: 0.88rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    Dealoround.com — Official E-Commerce Store Owned & Operated by <strong>Orbix Consultancy</strong>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">Dealo<span>round</span></a>
+      <nav>
+        <ul>
+          <li><a href="#products">Shop</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('privacy')">Privacy Policy</a></li>
+        </ul>
+      </nav>
+      <button class="cart-btn" onclick="alert('Cart items: ' + cartCount)">Cart (<span id="cart-count">0</span>)</button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <div class="hero-inner">
+      <h1>Everyday Tech, Workspace Gear & Smart Deals</h1>
+      <p>Shop curated electronics, office accessories, and licensed software solutions at Dealoround — an official retail storefront operated by Orbix Consultancy.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn-primary">Shop Featured Deals</a>
+        <a href="#contact" class="btn-outline">Customer Support</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Products / Store Section -->
+  <section id="products">
+    <div class="section-title">
+      <h2>Featured E-Commerce Catalog</h2>
+      <p>Verified retail merchandise and digital packages with direct customer support</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="product-thumb">💻</div>
+        <div class="card-body">
+          <span class="badge">Workspace Essentials</span>
+          <h3>Ergonomic Aluminum Laptop Stand</h3>
+          <p>Adjustable heat-dissipating desk stand built for daily workstation comfort and durability.</p>
+          <div class="card-footer">
+            <span class="price">$45.00</span>
+            <button class="add-btn" onclick="addToCart('Ergonomic Aluminum Laptop Stand')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="product-thumb">🛡️</div>
+        <div class="card-body">
+          <span class="badge">Digital License</span>
+          <h3>Total Device Security Suite (1-Year)</h3>
+          <p>Genuine multi-device antivirus and privacy protection license delivered with full setup guidance.</p>
+          <div class="card-footer">
+            <span class="price">$59.00</span>
+            <button class="add-btn" onclick="addToCart('Total Device Security Suite')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="product-thumb">🎧</div>
+        <div class="card-body">
+          <span class="badge">Audio & Calls</span>
+          <h3>Wireless Noise-Cancelling Headset</h3>
+          <p>Studio-grade microphone clarity and 30-hour battery life for remote meetings and customer care teams.</p>
+          <div class="card-footer">
+            <span class="price">$89.00</span>
+            <button class="add-btn" onclick="addToCart('Wireless Noise-Cancelling Headset')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="product-thumb">🔌</div>
+        <div class="card-body">
+          <span class="badge">Accessories</span>
+          <h3>7-in-1 USB-C Multiport Hub</h3>
+          <p>High-speed 4K HDMI, Gigabit Ethernet, and 100W PD charging adapter for laptops and tablets.</p>
+          <div class="card-footer">
+            <span class="price">$39.00</span>
+            <button class="add-btn" onclick="addToCart('7-in-1 USB-C Multiport Hub')">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About & Official Business Verification Details -->
+  <section id="about">
+    <div class="section-title">
+      <h2>About Dealoround & Orbix Consultancy</h2>
+      <p>Transparent e-commerce operations backed by verified commercial registration</p>
+    </div>
+
+    <div class="about-box">
+      <div>
+        <h3>Our Storefront</h3>
+        <p style="margin-bottom: 14px; color: var(--muted);">
+          <strong>Dealoround</strong> (<a href="https://dealoround.com" style="color: var(--accent);">dealoround.com</a>) is an online retail and digital commerce brand owned and operated by <strong>Orbix Consultancy</strong>, headquartered in Uttara, Dhaka, Bangladesh.
+        </p>
+        <p style="color: var(--muted);">
+          We focus on delivering reliable tech accessories, authentic software licenses, and responsive customer support to individual buyers and business clients.
+        </p>
+      </div>
+
+      <div>
+        <h3>Corporate & Verification Information</h3>
+        <ul class="info-list">
+          <li><strong>Storefront Brand:</strong> Dealoround (dealoround.com)</li>
+          <li><strong>Legal Business Name:</strong> Orbix Consultancy</li>
+          <li><strong>Registered Address:</strong> House #35/A, Road #11, Sector #4, Uttara, Dhaka-1230, Bangladesh</li>
+          <li><strong>Contact Phone:</strong> +8801872965954</li>
+          <li><strong>Support Email:</strong> support@dealoround.com</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="section-title">
+      <h2>Contact Support</h2>
+      <p>Need help with an order or product inquiry? Reach our Dhaka operations team directly.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="about-box" style="display: block;">
+        <h3>Business Office</h3>
+        <p style="margin-bottom: 12px; color: var(--muted);">
+          <strong>Orbix Consultancy (Operator of Dealoround)</strong><br />
+          House #35/A, Road #11, Sector #4,<br />
+          Uttara, Dhaka-1230, Bangladesh
+        </p>
+        <p style="margin-bottom: 8px;"><strong>Phone:</strong> +8801872965954</p>
+        <p><strong>Email:</strong> support@dealoround.com</p>
+      </div>
+
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you! Your inquiry has been sent to Dealoround (Orbix Consultancy).'); this.reset();">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" required placeholder="Enter your full name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required placeholder="you@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message / Order Inquiry</label>
+          <textarea id="message" rows="4" required placeholder="How can we assist you?"></textarea>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h4>Dealoround</h4>
+        <p style="font-size: 0.92rem;">
+          Operated by <strong>Orbix Consultancy</strong><br />
+          House #35/A, Road #11, Sector #4,<br />
+          Uttara, Dhaka-1230, Bangladesh<br />
+          Phone: +8801872965954
+        </p>
+      </div>
+
+      <div>
+        <h4>Navigation</h4>
+        <ul class="footer-links">
+          <li><a href="#products">Shop Catalog</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact Support</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Policies</h4>
+        <ul class="footer-links">
+          <li><a href="javascript:void(0)" onclick="openModal('privacy')">Privacy Policy</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('terms')">Terms of Service</a></li>
+          <li><a href="javascript:void(0)" onclick="openModal('refund')">Return & Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="copyright">
+      &copy; 2026 Dealoround — A Retail Brand of <strong>Orbix Consultancy</strong>. All Rights Reserved. | House #35/A, Road #11, Sector #4, Uttara, Dhaka-1230
+    </div>
+  </footer>
+
+  <!-- Legal Policy Modal -->
+  <div id="policyModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Policy</h3>
+        <button class="close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div id="modalBody" style="font-size: 0.95rem; color: var(--text);"></div>
+    </div>
+  </div>
+
+  <script>
+    let cartCount = 0;
+
+    function addToCart(productName) {
+      cartCount++;
+      document.getElementById('cart-count').innerText = cartCount;
+      alert(productName + ' added to your cart.');
+    }
+
+    const policies = {
+      privacy: {
+        title: 'Privacy Policy — Dealoround (Orbix Consultancy)',
+        body: '<p><strong>Effective Date:</strong> January 1, 2026</p><br><p>Dealoround (dealoround.com), operated by Orbix Consultancy, respects your privacy. We collect only the contact, shipping, and billing information necessary to process your orders and respond to support requests.</p><br><p>We never sell personal customer information. For inquiries, contact <strong>support@dealoround.com</strong> or write to Orbix Consultancy, House #35/A, Road #11, Sector #4, Uttara, Dhaka-1230, Bangladesh.</p>'
+      },
+      terms: {
+        title: 'Terms of Service — Dealoround (Orbix Consultancy)',
+        body: '<p>By accessing dealoround.com and placing orders, you agree to these Terms of Service. All products and digital licenses are sold by Orbix Consultancy subject to stock availability and standard warranty terms.</p><br><p>Customer support is available at +8801872965954 or support@dealoround.com.</p>'
+      },
+      refund: {
+        title: 'Return & Refund Policy — Dealoround (Orbix Consultancy)',
+        body: '<p>Physical items purchased from dealoround.com may be returned within 7 days of receipt in original, unused condition. Digital software activation keys are non-refundable once issued.</p><br><p>To request a return, email support@dealoround.com with your order number.</p>'
+      }
+    };
+
+    function openModal(type) {
+      document.getElementById('modalTitle').innerText = policies[type].title;
+      document.getElementById('modalBody').innerHTML = policies[type].body;
+      document.getElementById('policyModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('policyModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
